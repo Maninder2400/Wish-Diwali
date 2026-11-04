@@ -4,67 +4,133 @@
    ✏️  EDIT THIS PART — everything personal lives here
    ═══════════════════════════════════════════════════════════ */
 const CONFIG = {
-  // Her name. You can also override it from the link: ?to=Name
-  herName: "Jaan",
+  // Which mode the page uses when the link has no ?mode=…  ("love" or "friend")
+  defaultMode: "love",
 
-  // Your name, shown in the footer. You can also override it from the link: ?from=Name
+  // Your name, shown in the footer. Override from the link: ?from=Name
   yourName: "Maninder",
 
   // Diwali date (YYYY-MM-DD). Used for the little "Diwali in N days" line.
   diwaliDate: "2026-11-08",
 
-  // The letter. One line per paragraph. {her} becomes her name.
-  letter: [
-    "Dear {her},",
-    "Every Diwali, people light diyas to welcome light into their homes.",
-    "This year I didn't have to. You walked in, and it's been bright ever since.",
-    "Thank you for being my calm, my chaos, and my favourite person to come home to.",
-    "This Diwali, I wish you everything your heart has been quietly wishing for…",
-    "…and a little extra, because you'd never ask for it yourself.",
-    "Happy Diwali, my love. 🪔",
-  ],
-
-  // One diya per reason. Keep it to 6 for the nicest layout.
-  reasons: [
-    "The way you laugh at your own jokes before you even finish them.",
-    "How you turn the most ordinary evening into a festival.",
-    "You believe in me on the days I forget how to.",
-    "Your good-morning texts beat every alarm I've ever owned.",
-    "You remember the tiny things I say and bring them back as surprises.",
-    "Because home isn't a place anymore. It's you.",
-  ],
-
-  // The big question.
-  question: "Will you be my Diwali, this year and every year after? 🪔",
-
-  // What the "No" button says each time she tries to press it.
-  noTexts: [
-    "No",
-    "Are you sure? 🥺",
-    "Really sure?",
-    "Think again…",
-    "The diyas are watching 👀",
-    "Pretty please?",
-    "Last chance!",
-    "Fine, I'll keep asking 😤",
-    "This button is tired now",
-    "Just press Yes 💛",
-  ],
-
-  // After she says yes.
-  finalLine1: "You just made this the best Diwali ever.",
-  finalLine2: "Happy Diwali, {her}. You're my favourite light.",
-
   // Optional: drop an mp3 next to index.html and name it here. Leave "" for no music.
   music: "",
+
+  // One block of text per mode. Pick a mode from the link: ?mode=love or ?mode=friend
+  // {name} becomes their name (from ?to=Name, or defaultName below).
+  modes: {
+
+    /* ───── for her ───── */
+    love: {
+      defaultName: "Jaan",
+      footerHeart: "❤️",
+
+      // The letter. One line per paragraph.
+      letter: [
+        "Dear {name},",
+        "Every Diwali, people light diyas to welcome light into their homes.",
+        "This year I didn't have to. You walked in, and it's been bright ever since.",
+        "Thank you for being my calm, my chaos, and my favourite person to come home to.",
+        "This Diwali, I wish you everything your heart has been quietly wishing for…",
+        "…and a little extra, because you'd never ask for it yourself.",
+        "Happy Diwali, my love. 🪔",
+      ],
+
+      // Heading above the six diyas, and the line once all are lit.
+      reasonsTitle: "Every diya here is a reason you light up my life",
+      allLit: "You lit them all. Just like you lit me up. 💛",
+
+      // One diya per reason. Keep it to 6 for the nicest layout.
+      reasons: [
+        "You tell me long stories about people I've never met, and I don't follow half of it. I just like hearing your voice.",
+        "Even when you say nothing at all, having you next to me is enough.",
+        "The whole day feels unfinished until I've heard from you.",
+        "Your good-morning texts beat every alarm I've ever owned.",
+        "You remember the tiny things I say and bring them back as surprises.",
+        "Because home isn't a place anymore. It's you.",
+      ],
+
+      // The big question.
+      question: "Will you be my Diwali, this year and every year after? 🪔",
+
+      // What the "No" button says each time she tries to press it.
+      noTexts: [
+        "No",
+        "Are you sure? 🥺",
+        "Really sure?",
+        "Think again…",
+        "The diyas are watching 👀",
+        "Pretty please?",
+        "Last chance!",
+        "Fine, I'll keep asking 😤",
+        "This button is tired now",
+        "Just press Yes 💛",
+      ],
+
+      // After she says yes.
+      bigYes: "YESSS! 🎆",
+      finalLine1: "You just made this the best Diwali ever.",
+      finalLine2: "Happy Diwali, {name}. You're my favourite light.",
+    },
+
+    /* ───── for best friends (works for anyone, no he/she anywhere) ───── */
+    friend: {
+      defaultName: "dost",
+      footerHeart: "🪔",
+
+      letter: [
+        "Dear {name},",
+        "Every Diwali, people light diyas to chase the darkness away. I just text you. Same result, zero effort.",
+        "Thank you for putting up with me all year. Nobody asked you to. You did it anyway. Questionable judgement, honestly.",
+        "This Diwali, I wish you more mithai than your doctor would approve of, and at least one plan that actually happens.",
+        "And if you set anything on fire tonight, I was never there. Love you. Delete this.",
+        "Happy Diwali, you absolute menace. 🪔",
+      ],
+
+      reasonsTitle: "Every diya here is a reason I keep you around (there's a list, obviously)",
+      allLit: "All lit. Same thing you do to every room, and occasionally to the kitchen. 💛",
+
+      reasons: [
+        "You show up every single time. Uninvited, mostly, but you show up.",
+        "Your laugh is louder than an aloo bamb and about as legal.",
+        "You never call anymore. You've changed. It's fine. I'm fine. Everyone's fine.",
+        "You call me your best friend, then leave me on seen for two days. Bold strategy. Respect.",
+        "I've saved every \"let's meet this weekend\" text you've sent. Zero have happened. No pressure though.",
+        "You still haven't given me that party. I'm not asking. I'm just stating facts.",
+      ],
+
+      question: "Best friends for one more year? Terms unchanged. Non-negotiable. 🪔",
+
+      noTexts: [
+        "No",
+        "Excuse me? 👀",
+        "After all those chai runs?",
+        "I have screenshots",
+        "I know where you live",
+        "Your mom likes me more anyway",
+        "Last chance before I regift you soan papdi",
+        "Fine, I'll keep asking 😤",
+        "This button has given up",
+        "Just press Yes, you drama 💛",
+      ],
+
+      bigYes: "KNEW IT! 🎆",
+      finalLine1: "Best friends. Every Diwali. Screenshot this, it's legally binding now.",
+      finalLine2: "Happy Diwali, {name}. Don't reply to this. I'll know you saw it anyway.",
+    },
+  },
 };
 /* ═══════════════════════════════════════════════════════════ */
 
 
 const params = new URLSearchParams(location.search);
-const HER = (params.get("to") || CONFIG.herName).trim();
-const HIM = (params.get("from") || CONFIG.yourName).trim();
-const fill = (s) => s.replace(/\{her\}/g, HER);
+const wantedMode = (params.get("mode") || CONFIG.defaultMode).toLowerCase();
+const MODE_KEY = CONFIG.modes[wantedMode] ? wantedMode : CONFIG.defaultMode;
+const MODE = CONFIG.modes[MODE_KEY];
+const HER = (params.get("to") || MODE.defaultName).trim();   // the person the page is for
+const HIM = (params.get("from") || CONFIG.yourName).trim();  // the sender
+const fill = (s) => s.replace(/\{name\}|\{her\}/g, HER);
+document.documentElement.dataset.mode = MODE_KEY;
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 const rand = (a, b) => a + Math.random() * (b - a);
@@ -334,7 +400,7 @@ function go(name) {
   currentStage = name;
   stageEls.forEach((s) => s.classList.toggle("active", s.dataset.stage === name));
   if (name === "letter") startLetter();
-  if (name === "question") $(".q").textContent = fill(CONFIG.question);
+  if (name === "question") $(".q").textContent = fill(MODE.question);
   if (name === "yes") celebrate();
 }
 
@@ -344,6 +410,7 @@ $$("[data-go]").forEach((b) => b.addEventListener("click", () => go(b.dataset.go
 
 $$(".her-name").forEach((el) => (el.textContent = HER));
 $$(".his-name").forEach((el) => (el.textContent = HIM));
+$$(".footer-heart").forEach((el) => (el.textContent = MODE.footerHeart || "❤️"));
 
 const row = $(".diya-row");
 const ROW_COUNT = 7;
@@ -412,7 +479,7 @@ function startLetter() {
   if (letterStarted) return;
   letterStarted = true;
   const body = $(".letter-body");
-  const lines = CONFIG.letter.map(fill);
+  const lines = MODE.letter.map(fill);
   const paras = lines.map(() => { const p = document.createElement("p"); body.appendChild(p); return p; });
   let li = 0, ci = 0;
 
@@ -450,7 +517,10 @@ function startLetter() {
 
 const reasonsEl = $(".reasons");
 let litCount = 0;
-CONFIG.reasons.forEach((text) => {
+const reasonsTitle = $(".reasons-title"), allLitEl = $(".all-lit");
+if (reasonsTitle) reasonsTitle.textContent = fill(MODE.reasonsTitle);
+if (allLitEl) allLitEl.textContent = fill(MODE.allLit);
+MODE.reasons.forEach((text) => {
   const card = document.createElement("div");
   card.className = "reason";
   card.setAttribute("role", "button");
@@ -465,7 +535,7 @@ CONFIG.reasons.forEach((text) => {
     for (let i = 0; i < 10; i++) {
       spawn({ x: r.left + r.width / 2, y: r.top + 40, vx: rand(-1.5, 1.5), vy: rand(-2.5, -0.5), life: 0, max: rand(25, 45), size: rand(1, 2), color: "#ffcc66", gravity: 0.05, friction: 0.97, glow: true });
     }
-    if (litCount === CONFIG.reasons.length) {
+    if (litCount === MODE.reasons.length) {
       setTimeout(() => {
         $(".all-lit").classList.remove("hidden");
         $('[data-stage="reasons"] .btn.next').classList.remove("hidden");
@@ -485,7 +555,7 @@ let noTries = 0;
 
 function dodge() {
   noTries++;
-  const texts = CONFIG.noTexts;
+  const texts = MODE.noTexts;
   noBtn.textContent = texts[Math.min(noTries, texts.length - 1)];
 
   // the "No" button runs away and shrinks; "Yes" grows
@@ -556,8 +626,9 @@ function celebrate() {
   if (celebrated) return;
   celebrated = true;
   noBtn.remove();
-  $(".line1").textContent = fill(CONFIG.finalLine1);
-  $(".line2").textContent = fill(CONFIG.finalLine2);
+  $(".big-yes").textContent = fill(MODE.bigYes);
+  $(".line1").textContent = fill(MODE.finalLine1);
+  $(".line2").textContent = fill(MODE.finalLine2);
   autoFireworks = true;
   // opening volley
   for (let i = 0; i < 5; i++) setTimeout(() => launch(rand(W * 0.2, W * 0.8)), i * 180);
